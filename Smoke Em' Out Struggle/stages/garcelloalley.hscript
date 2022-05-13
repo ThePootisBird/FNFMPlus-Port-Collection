@@ -1,0 +1,75 @@
+function start(song) {
+    bg = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'stageback.png');
+    bg.scrollFactor.set(0.9, 0.9);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    stageFront = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'stagefront.png');
+    stageFront.scrollFactor.set(0.9, 0.9);
+    stageFront.antialiasing = true;
+    addSprite(stageFront, BEHIND_ALL);
+    smoke = new FlxSprite(-200, -400);
+    var tex = FlxAtlasFrames.fromSparrow('assets/images/custom_stages/garcelloalleyalt/garSmoke.png','assets/images/custom_stages/garcelloalleyalt/garSmoke.xml');
+    smoke.frames = tex;
+    smoke.animation.addByPrefix("idle", "smokey instance", 24, true);
+    smoke.setGraphicSize(Std.int(smoke.width * 2.5));
+    smoke.animation.play("idle");
+    smoke.antialiasing = true;
+    garc = new FlxSprite(-200, 600).loadGraphic('assets/images/custom_stages/garcelloalleyalt/gardead.png');
+    // OH MY GOD FARTSMELLO NO!!!
+    garc.scrollFactor.set(0.9, 0.9);
+    garc.antialiasing = true;
+if (curSong == 'release')
+   {
+   addSprite(smoke, BEHIND_NONE);
+   addSprite(garc, BEHIND_ALL);
+   };
+if (curSong == 'fading')
+   {
+   addSprite(garc, BEHIND_ALL);
+   };
+    setDefaultZoom(0.9);
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+
+}
+
+function stepHit(step)
+{
+if (step == 255 && PlayState.SONG.player1 == 'pico')
+   {
+   FlxTween.tween(garc, {y: -1000}, 1);
+   };
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+

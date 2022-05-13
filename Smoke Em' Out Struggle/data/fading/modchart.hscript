@@ -1,0 +1,60 @@
+
+function start(song)
+{
+    light = new FlxSprite(-1000, -200).loadGraphic(hscriptPath + 'stagecurtains.png');
+    light.scrollFactor.set(0.9, 0.9);
+    light.antialiasing = true;
+    light.alpha = 0;
+    addSprite(light, BEHIND_NONE);
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+
+}
+
+function stepHit(step)
+{
+    if (curStep > 240)
+       {
+       iconP2.alpha -= 0.1;
+       dad.alpha -= 0.1;
+       dad.playAnim('coolguy');
+       }
+if (curStep > 249 && curStep < 255 && PlayState.SONG.player1 == 'pico')
+   {
+   light.alpha += 0.07;
+   };
+}
+
+function playerTwoTurn()
+{
+    
+}
+
+function playerTwoMiss()
+{
+    
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
