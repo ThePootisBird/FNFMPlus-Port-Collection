@@ -1,0 +1,20 @@
+[
+    {
+
+        "animNames": [
+            "axeNote",
+            "axeNote",
+            "axeNote",
+            "axeNote"
+        ],
+
+        "animInt": [32,33,34,35],
+	"healCutoff":shit,
+        "healAmount": -3,
+        "consistentHealth": false,
+        "shouldSing": false,
+        "damageAmount": -0.1,
+	"id":axe,
+
+    }
+]

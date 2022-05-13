@@ -1,0 +1,57 @@
+
+function start(song) {
+boyfriend.animation.addByPrefix('dodge', 'BF Dodge', 24, false);
+boyfriend.animation.addByPrefix('idle', 'BF idle shaking', 24, false);     
+}
+
+
+function beatHit(beat)
+{
+}
+
+function update(elapsed)
+{
+		    
+}
+
+function stepHit(step)
+{  
+currentPlayState.health -= 0.002;
+if (health < 0.002)
+   {
+   currentPlayState.health += 0.002;
+   }
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+currentPlayState.notes.forEachAlive(function (daNote)
+ {
+ if (daNote.coolId == 'axe')
+    {
+    dad.playAnim('singLEFT');
+    boyfriend.playAnim('dodge');
+    };
+  });
+}
+
+function playerOneSing()
+{
+
+}
