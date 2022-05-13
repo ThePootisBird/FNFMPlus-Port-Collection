@@ -1,0 +1,56 @@
+function start(song) {
+    bg = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'stageback.png');
+    bg.scrollFactor.set(0.9, 0.9);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    dad.y += 500;
+    boyfriend.y += 500;
+    gf.x -= 60;
+    gf.y += 800;
+    dad.followCamY -= 200;
+    dad.followCamX -= 200;
+    boyfriend.followCamY -= 100;
+    boyfriend.followCamX -= 100;
+    setDefaultZoom(0.6);
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+
+}
+
+function stepHit(step)
+{
+
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+
