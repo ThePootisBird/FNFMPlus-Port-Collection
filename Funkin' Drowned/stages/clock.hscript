@@ -1,0 +1,228 @@
+function start(song) {
+    bg4 = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'water.png');
+    bg4.setGraphicSize(Std.int(bg4.width * 2));
+    bg4.screenCenter();
+    bg4.antialiasing = true;
+    bg = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'sky.png');
+    bg.scrollFactor.set(0.1, 0.1);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    bg2 = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'backwalls.png');
+    bg2.scrollFactor.set(0.6, 0.6);
+    bg2.antialiasing = true;
+    addSprite(bg2, BEHIND_ALL);
+    bg3 = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'clocktower.png');
+    bg3.scrollFactor.set(0.8, 0.8);
+    bg3.antialiasing = true;
+    addSprite(bg3, BEHIND_ALL);
+    stageFront = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'ground.png');
+    stageFront.scrollFactor.set(0.9, 0.9);
+    stageFront.antialiasing = true;
+    stageFront.updateHitbox();
+    addSprite(stageFront, BEHIND_ALL);
+    stageFront2 = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'walls.png');
+    stageFront2.scrollFactor.set(0.9, 0.9);
+    stageFront2.antialiasing = true;
+    stageFront2.updateHitbox();
+    addSprite(stageFront2, BEHIND_ALL);
+    stagecurtains = new FlxSprite(-650, -200).loadGraphic(hscriptPath + 'salebooths.png');
+    stagecurtains.scrollFactor.set(1.1, 1.1);
+    stagecurtains.updateHitbox();
+    stagecurtains.antialiasing = true;
+    addSprite(stagecurtains, BEHIND_ALL);
+    drownben = new Character(100, 100, 'bendrowned');
+    drownbf = new Character(800, -100, 'drownbf');
+    sticky = new Character(800, -100, 'stickydrowned');
+    addSprite(sticky, BEHIND_NONE);
+    sticky.visible = false;
+    drownbf.flipX = false;
+    sticky.flipX = false;
+    addSprite(drownben, BEHIND_NONE);
+    drownben.visible = false;
+    addSprite(drownbf, BEHIND_NONE);
+    drownbf.visible = false;
+
+    if (PlayState.SONG.player1 == 'bensticky' || PlayState.SONG.player1 == 'sticky')
+       {
+       boyfriend.y -= 100;
+       }
+    setDefaultZoom(0.8);
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+if (FlxG.keys.justPressed.F)
+   {
+   drown();
+   }
+if (FlxG.keys.justPressed.G)
+   {
+   notdrown();
+   }
+    if (getHaxeActor("dad").animation.curAnim.name == "singUP") {
+        drownben.playAnim('singUP');
+		}
+    if (getHaxeActor("dad").animation.curAnim.name == "singLEFT") {
+        drownben.playAnim('singLEFT');
+		}	
+    if (getHaxeActor("dad").animation.curAnim.name == "singRIGHT") {
+        drownben.playAnim('singRIGHT');
+		}		
+    if (getHaxeActor("dad").animation.curAnim.name == "singDOWN") {
+        drownben.playAnim('singDOWN');
+                }
+    if (getHaxeActor("dad").animation.curAnim.name == "idle") {
+        drownben.playAnim('idle');
+                }
+    if (getHaxeActor("boyfriend").animation.curAnim.name == "singUP") {
+        drownbf.playAnim('singUP');
+        sticky.playAnim('singUP');
+		}
+    if (getHaxeActor("boyfriend").animation.curAnim.name == "singLEFT") {
+        drownbf.playAnim('singRIGHT');
+        sticky.playAnim('singRIGHT');
+		}	
+    if (getHaxeActor("boyfriend").animation.curAnim.name == "singRIGHT") {
+        drownbf.playAnim('singLEFT');
+        sticky.playAnim('singLEFT');
+		}		
+    if (getHaxeActor("boyfriend").animation.curAnim.name == "singDOWN") {
+        drownbf.playAnim('singDOWN');
+        sticky.playAnim('singDOWN');
+                }
+    if (getHaxeActor("boyfriend").animation.curAnim.name == "idle") {
+        drownbf.playAnim('idle');
+        sticky.playAnim('idle');
+                }
+}
+
+function stepHit(step)
+{
+if (step == 12 && curSong == 'terrible-fate' || step == 44 && curSong == 'terrible-fate' || step == 76 && curSong == 'terrible-fate')
+   {
+   FlxG.camera.shake(0.03, 0.08);
+   }
+if (step == 108 && curSong == 'terrible-fate' || step == 140 && curSong == 'terrible-fate')
+   {
+   FlxG.camera.shake(0.03, 0.08);
+   }
+if (step == 12 && curSong == 'terrible-fate-sticky' || step == 44 && curSong == 'terrible-fate-sticky' || step == 76 && curSong == 'terrible-fate-sticky')
+   {
+   FlxG.camera.shake(0.03, 0.08);
+   }
+if (step == 108 && curSong == 'terrible-fate-sticky' || step == 140 && curSong == 'terrible-fate-sticky')
+   {
+   FlxG.camera.shake(0.03, 0.08);
+   }
+if (curStep > 189 && curStep < 208)
+   {
+   dad.playAnim('singUP');
+   }
+if (step == 528)
+   {
+   drown();
+   }
+if (step == 784)
+   {
+   notdrown();
+   }
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+currentPlayState.health -= 0.02;
+if (health == 0.02)
+   {
+   currentPlayState.health += 0.02;
+   }
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+
+function drown()
+{
+bg.alpha = 0;
+bg2.alpha = 0;
+bg3.alpha = 0;
+stageFront.alpha = 0;
+stagecurtains.alpha = 0;
+stageFront2.alpha = 0;
+addSprite(bg4, BEHIND_ALL);
+gf.alpha = 0;
+FlxG.camera.fade(0x000000, 1.3, true);
+boyfriend.followCamY = -200;
+if (PlayState.SONG.player2 == 'ben')
+   {
+   iconP2.switchAnim("bendrowned");
+   dad.visible = false;
+   drownben.visible = true;
+   }
+if (PlayState.SONG.player1 == 'benbf' || PlayState.SONG.player1 == 'bf')
+   {
+   iconP1.switchAnim("drownbf");
+   boyfriend.visible = false;
+   drownbf.visible = true;
+   }
+if (PlayState.SONG.player1 == 'bensticky' || PlayState.SONG.player1 == 'sticky')
+   {
+   iconP1.switchAnim("stickydrowned");
+   boyfriend.visible = false;
+   sticky.visible = true;
+   }
+}
+
+function notdrown()
+{
+bg.alpha = 1;
+bg2.alpha = 1;
+bg3.alpha = 1;
+stageFront.alpha = 1;
+stagecurtains.alpha = 1;
+stageFront2.alpha = 1;
+removeSprite(bg4);
+boyfriend.followCamY = -50;
+gf.alpha = 1;
+FlxG.camera.fade(0x000000, 1.3, true);
+if (PlayState.SONG.player2 == 'ben')
+   {
+   iconP2.switchAnim("ben");
+   dad.visible = true;
+   drownben.visible = false;
+   }
+if (PlayState.SONG.player1 == 'benbf' || PlayState.SONG.player1 == 'bf')
+   {
+   iconP1.switchAnim("bf");
+   boyfriend.visible = true;
+   drownbf.visible = false;
+   }
+if (PlayState.SONG.player1 == 'bensticky' || PlayState.SONG.player1 == 'sticky')
+   {
+   iconP1.switchAnim("sticky");
+   boyfriend.visible = true;
+   sticky.visible = false;
+   }
+}
