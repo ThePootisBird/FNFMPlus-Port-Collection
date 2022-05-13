@@ -1,0 +1,67 @@
+trace(": )");
+// char is a Character
+function init(char) {
+    trace(": )");
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'char.png', hscriptPath + 'char.xml');
+    trace(": )");
+    char.frames = tex;
+    char.animation.addByPrefix('idle', 'Sonic idle', 24, false);
+    if (char.isPlayer) {
+        char.animation.addByPrefix('singLEFT','Sonic left', 24, false);
+        char.animation.addByPrefix('singRIGHT', 'Sonic right', 24, false);
+        char.animation.addByPrefix('singLEFTmiss', 'MISS Sonic left',24, false);
+        char.animation.addByPrefix('singRIGHTmiss', 'MISS Sonic right',24, false);
+    } else {
+        char.animation.addByPrefix('singRIGHT','Sonic left', 24, false);
+        char.animation.addByPrefix('singLEFT', 'Sonic right', 24, false);
+        char.animation.addByPrefix('singRIGHTmiss', 'MISS Sonic left',24, false);
+        char.animation.addByPrefix('singLEFTmiss', 'MISS Sonic right',24, false);
+    }
+    char.animation.addByPrefix('singUP', 'Sonic up', 24, false);
+    char.animation.addByPrefix('singDOWN', 'Sonic down', 24, false);
+    char.animation.addByPrefix('singUPmiss', 'MISS Sonic up', 24, false);
+    char.animation.addByPrefix('singDOWNmiss', 'MISS Sonic down', 24, false);
+    char.animation.addByPrefix('firstDeath', 'GAME OVER', 24, false);
+    char.animation.addByPrefix('deathLoop', 'GAME OVER loop', 24, true);
+    char.animation.addByPrefix('deathConfirm', 'GAME OVER enter', 24, false);
+
+    char.addOffset('idle');
+    char.addOffset('singUP', -30, -9);
+    char.addOffset('singRIGHT', -29, -1);
+    char.addOffset('singLEFT', 8, 3);
+    char.addOffset('singDOWN', 0, 0);
+    char.addOffset('singUPmiss', -29, 0);
+    char.addOffset('singRIGHTmiss', 17, 6);
+    char.addOffset('singLEFTmiss', 30, 14);
+    char.addOffset('singDOWNmiss', 0, 3);
+    char.addOffset('firstDeath', -14, -11);
+    char.addOffset('deathLoop', -20, -14);
+    char.addOffset('deathConfirm', -27, -10);
+
+    char.playAnim('idle');
+
+    char.flipX = true;
+    char.like = "soniccn";
+    char.likeBf = true;
+
+    char.enemyOffsetX = 0;
+    char.enemyOffsetY = 350;
+    char.playerOffsetX = 0;
+    char.playerOffsetY = 0;
+    char.followCamX = 0;
+    char.followCamY = 0;
+    char.midpointX = 0;
+    char.midpointY = 0;
+}
+portraitOffset = [0, 0];
+dadVar = 4.0;
+isPixel = false;
+function update(elapsed, char) {
+    // do nothing...
+}
+var danced = false;
+function dance(char) {
+    trace(": )");
+    char.playAnim('idle');
+}
+trace("done");

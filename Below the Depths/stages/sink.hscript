@@ -1,0 +1,202 @@
+var fall = [5];
+var exclusion = '5';
+var fallPos = [];
+var ballScales = [];
+var dead = false;
+var first = true;
+var alphaLoop = true;
+var zoomLock = true;
+var gravity = 9.8;
+var speed = 0;
+var zoom = 0;
+var bgs = ['depths', 'floor', 'ceiling'];
+var xpos = [-50, -50, -70];
+var ypos = [-80, 0, -50];
+var scale = 0;
+var coolx = 0;
+var ballMoving = false;
+function start(song) {
+    depths = new FlxSprite(-50, -80).loadGraphic(hscriptPath + 'sinkdepths.png');
+    depths.scale.x = 1.11;
+    depths.scale.y = 1.1;
+    depths.antialiasing = true;
+    addSprite(depths, BEHIND_ALL);
+    scale = FlxG.random.float(0.1, 1);
+    coolx = FlxG.random.float(100, 1500);
+    ball = new FlxSprite(-80 + 200, -380).loadGraphic(hscriptPath + 'ball.png');
+    ball.scale.x = scale;
+    ball.scale.y = scale;
+    ball.antialiasing = true;
+    addSprite(ball, BEHIND_ALL);    
+    floor = new FlxSprite(-50, 0).loadGraphic(hscriptPath + 'sinkfloor.png');
+    floor.scale.x = 1.11;
+    floor.scale.y = 1.1;
+    floor.antialiasing = true;
+    addSprite(floor, BEHIND_ALL); 
+    ceiling = new FlxSprite(-50, -80).loadGraphic(hscriptPath + 'sinkceiling.png');
+    ceiling.scale.x = 1.11;
+    ceiling.scale.y = 1.1;
+    ceiling.antialiasing = true;
+    addSprite(ceiling, BEHIND_ALL);
+    ceiling.scrollFactor.set(0.9, 0.9);
+    setDefaultZoom(0.63);
+    waves = new FlxSprite(0, 0);
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'waves.png', hscriptPath + 'waves.xml');
+    waves.frames = tex;
+    waves.animation.addByPrefix("idle", "idle", 13, true);
+    waves.animation.play("idle");
+    waves.cameras = [camHUD];
+    waves.alpha = 0.06;
+    waves.screenCenter();
+    waves.setGraphicSize(FlxG.width, FlxG.height);
+    waves.antialiasing = true;
+    addSprite(waves, BEHIND_NONE);
+    vignette = new FlxSprite(0,0).loadGraphic(hscriptPath + 'vignette.png');
+    vignette.cameras = [camHUD];
+    vignette.antialiasing = true;
+    addSprite(vignette, BEHIND_NONE);    
+    restart = new FlxSprite(0, 200).loadGraphic(hscriptPath + 'r.png');
+    restart.alpha = 0;
+    restart.cameras = [camHUD];
+    restart.antialiasing = true;
+    dad.alpha = 0;
+    iconP2.alpha = 0;
+    boyfriend.x = 770;
+    boyfriend.y = 320;
+    gf.visible = false;
+    dad.x = 1400;
+    dad.y = 300;
+    boyfriend.followCamX = 50;
+    boyfriend.followCamY = -50;
+    dad.followCamX = 320;
+    dad.followCamY = 80;
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+if (health < 0.01)
+   {
+   currentPlayState.health = 0.01;
+   currentPlayState.demoMode = true;
+   }
+if (health == 0.01 && dead == false)
+   {
+   die();
+   }
+if (alphaLoop == false)
+   {
+if (dad.alpha == 0.1)
+   {
+   FlxTween.tween(dad, {alpha: 0.45}, 0.6, {ease: FlxEase.linear});
+   }
+if (dad.alpha == 0.45)
+   {
+   FlxTween.tween(dad, {alpha: 0.1}, 0.6, {ease: FlxEase.linear});   
+   }
+   }
+if (waves.alpha == 0.06)
+   {
+   FlxTween.tween(waves, {alpha: 0.12}, 0.8, {ease: FlxEase.linear});
+   }
+if (waves.alpha == 0.12)
+   {
+   FlxTween.tween(waves, {alpha: 0.06}, 0.8, {ease: FlxEase.linear});   
+   }
+if (waves.alpha == 0.35)
+   {
+   FlxTween.tween(waves, {alpha: 0.06}, 0.8, {ease: FlxEase.linear});   
+   }
+if (currentPlayState.demoMode == true)
+   {
+if (restart.alpha == 0.5)
+   {
+   FlxTween.tween(restart, {alpha: 1}, 1, {ease: FlxEase.linear});   
+   }
+if (restart.alpha == 1)
+   {
+   FlxTween.tween(restart, {alpha: 0.5}, 1, {ease: FlxEase.linear});   
+   }
+   }
+if (FlxG.random.bool(1) && ballMoving == false || FlxG.keys.justPressed.F)
+   {
+   moveBall();
+   }
+if (ballMoving == false)
+   {
+   scale = FlxG.random.float(0.1, 1);
+   coolx = FlxG.random.float(100, 1500);
+   }
+if (FlxG.camera.zoom == 0.63/3)
+   {
+   FlxG.camera.zoom = 0.36/8;
+   }
+}
+
+function die()
+{
+addSprite(restart, BEHIND_NONE);
+FlxTween.tween(restart, {alpha: 1}, 1, {ease: FlxEase.linear});
+}
+
+function moveBall()
+{
+   ball.y = -380;
+   ball.x = 120;
+FlxTween.tween(ball, {x: coolx}, 10, {ease: FlxEase.quadInOut});
+FlxTween.tween(ball, {y: 1000}, 10, {ease: FlxEase.quadInOut});
+ballMoving = true;
+
+					new FlxTimer().start(10, function(tmr)
+					{
+                                        ballMoving = false;
+					});
+}
+
+
+function stepHit(step)
+{
+if (step == 512)
+   {
+   alphaLoop = false;
+   FlxTween.tween(dad, {alpha: 0.1}, 0.6, {ease: FlxEase.linear});   
+   }
+if (step == 517)
+   {
+   FlxTween.tween(waves, {alpha: 0.35}, 0.8, {ease: FlxEase.linear});
+   }
+if (step == 528)
+   {
+   FlxTween.tween(FlxG.camera, {zoom: 0.53}, 0.8, {ease: FlxEase.circInOut});
+   }
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+

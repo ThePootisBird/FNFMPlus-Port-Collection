@@ -1,0 +1,933 @@
+var old;
+var maniamode = false;
+var sonicColor = "0xFF133d80";
+var fleetColor = "0xFFffd321";
+function start (song)
+{
+    bg2 = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'fleet.png');
+    bg2.scrollFactor.set(0.9, 0.9);
+    bg2.antialiasing = true;
+    addSprite(bg2, BEHIND_ALL);
+    bg = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'sonic.png');
+    bg.scrollFactor.set(0.9, 0.9);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    fleet = new Character(boyfriend.x - 600, boyfriend.y - 220, 'fleetwaycn', true);
+    addSprite(fleet, BEHIND_NONE);
+    fleet.visible = false;
+    fleet.beingControlled = true;
+    static = new FlxSprite(-200, -100);
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'vintage.png', hscriptPath + 'vintage.xml');
+    static.frames = tex;
+    static.animation.addByPrefix("idle", "idle", 24, true);
+    static.animation.play("idle");
+    static.antialiasing = true;
+    static.screenCenter();
+    static.setGraphicSize(Std.int(static.width * 5));
+    static.scrollFactor.set();
+    addSprite(static, BEHIND_NONE);
+    static.alpha = 0;
+if (curSong == 'phantasm' || curSong == 'give-up')
+   {
+    boyfriend.x -= 600;
+    boyfriend.y -= 200;
+    dad.x = boyfriend.x;
+    dad.y = boyfriend.y;
+    dad.flipX = false;
+    boyfriend.followCamX += 100;
+    dad.visible = false;
+    for (strum in playerStrums)
+        {
+        strum.visible = false;
+        }
+    iconP2.alpha = 0;
+	aaaa = new FlxText(0, 0, 0, "", 80);
+	aaaa.font = "assets/fonts/PUSAB.otf";
+	aaaa.cameras = [camHUD];
+	aaaa.visible = false;
+	aaaa.borderSize = 5;
+        aaaa.borderStyle = currentPlayState.songName.borderStyle;
+        aaaa.borderColor = 0xFFffffff;
+        aaaa.color = 0xFF133d80;
+        aaaa.screenCenter();
+        aaaa.x -= 600;
+        aaaa.antialiasing = true;
+        aaaa.alignment = "center";
+        aaaa.y += 200;
+        aaaa.text = "placeholder";
+	addSprite(aaaa, BEHIND_NONE);
+   }
+    setDefaultZoom(0.9);
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+if (difficulty == 6)
+   {
+   maniamode = true;
+   }
+        aaaa.alignment = "center";
+if (maniamode == false)
+   {
+   for (i in enemyStrums)
+       {
+       i.x -= 2000;
+       }
+   }
+currentPlayState.snapToStrumline = true;
+}
+
+function stepHit(step)
+{
+if (curSong == 'phantasm')
+   {
+   if (step == 384 || step == 768 || step == 1152 || step == 1172 || step == 1276 || step == 1282 || step == 1304 || step == 1536 || step == 1923 || step == 1935 || step == 1948)
+      {
+      fleetway();
+      }
+   if (step == 640 || step == 1024 || step == 1154 || step == 1176 || step == 1280 || step == 1300 || step == 1408 || step == 1792 || step == 1926 || step == 1938 || step == 1952)
+      {
+      sonic();
+      }
+   }
+
+if (curSong == 'give-up')
+   {
+   if (step == 384 || step == 768 || step == 1152 || step == 1172 || step == 1276 || step == 1282 || step == 1304 || step == 1536 || step == 1923 || step == 1935 || step == 1948)
+      {
+      fleetway();
+      }
+   if (step == 640 || step == 1024 || step == 1154 || step == 1176 || step == 1280 || step == 1300 || step == 1408 || step == 1792 || step == 1926 || step == 1938 || step == 1952)
+      {
+      sonic();
+      }
+
+
+
+
+// all this stuff is for the lyrics god help me
+// this first segment is for sonic
+   if (step == 1 || step == 1467)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "GIVE UP";
+      aaaa.visible = true;
+      }
+   if (step == 9)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "I HAVE NOTHING";
+      aaaa.visible = true;
+      }
+   if (step == 20)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IN INSIDE MY BODY";
+      aaaa.visible = true;
+      }
+   if (step == 33)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "A AA";
+      aaaa.visible = true;
+      }
+   if (step == 49 || step == 60)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "PLEASE";
+      aaaa.visible = true;
+      }
+   if (step == 43 || step == 79 || step == 291)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HELP ME";
+      aaaa.visible = true;
+      }
+   if (step == 55 || step == 1410 || step == 1216 || step == 1158 || step == 1115 || step == 1076 || step == 1042 || step == 1025 || step == 732 || step == 647 || step == 376 || step == 230 || step == 264 || step == 75 || step == 158 || step == 169)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "AAA";
+      aaaa.visible = true;
+      }
+   if (step == 69 || step == 1147 || step == 100)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "UUU";
+      aaaa.visible = true;
+      }
+   if (step == 85)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "SADLY HE INSIDE";
+      aaaa.visible = true;
+      }
+   if (step == 106)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "IM SURELY DEAD";
+      aaaa.visible = true;
+      }
+   if (step == 117)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "PLEASE JUST PLEASE";
+      aaaa.visible = true;
+      }
+   if (step == 128)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "A AAA";
+      aaaa.visible = true;
+      }
+   if (step == 143 || step == 1425 || step == 1097 || step == 177)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS HERE";
+      aaaa.visible = true;
+      }
+   if (step == 150 || step == 1432 || step == 184)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS HERE!!!";
+      aaaa.visible = true;
+      }
+   if (step == 163)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "PLEASE HELP ME";
+      aaaa.visible = true;
+      }
+   if (step == 191 || step == 1175 || step == 209 || step == 257)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS!!!";
+      aaaa.visible = true;
+      }
+   if (step == 201 || step == 1531)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "EVIL";
+      aaaa.visible = true;
+      }
+   if (step == 224)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "KILLER";
+      aaaa.visible = true;
+      }
+   if (step == 237)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "JUST WAIT TILL...";
+      aaaa.visible = true;
+      }
+   if (step == 246)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE COME";
+      aaaa.visible = true;
+      }
+   if (step == 273 || step == 366)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "COME BACK";
+      aaaa.visible = true;
+      }
+   if (step == 280)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "A AA TA TA";
+      aaaa.visible = true;
+      }
+   if (step == 295)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "IM DEAD";
+      aaaa.visible = true;
+      }
+   if (step == 299)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "IM DEAD!!";
+      aaaa.visible = true;
+      }
+   if (step == 307)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "AAA TAA TA";
+      aaaa.visible = true;
+      }
+   if (step == 323)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "LOOKS LIKE IM DEAD";
+      aaaa.visible = true;
+      }
+   if (step == 336)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "YES MAYBE";
+      aaaa.visible = true;
+      }
+   if (step == 346)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "MAYBE";
+      aaaa.visible = true;
+      }
+   if (step == 353 || step == 700)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS WILL";
+      aaaa.visible = true;
+      }
+   if (step == 360)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "COME";
+      aaaa.visible = true;
+      }
+   if (step == 655)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "IM BACK";
+      aaaa.visible = true;
+      }
+   if (step == 664)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE WILL BACK";
+      aaaa.visible = true;
+      }
+   if (step == 675)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "BUT NOW";
+      aaaa.visible = true;
+      }
+   if (step == 684)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS GONE";
+      aaaa.visible = true;
+      }
+   if (step == 715)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "COME BACK AND KILL ME";
+      aaaa.visible = true;
+      }
+   if (step == 743)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "LOOK AT ME";
+      aaaa.visible = true;
+      }
+   if (step == 755)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS WILL BACK";
+      aaaa.visible = true;
+      }
+   if (step == 1032)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS CONTROLLING ME";
+      aaaa.visible = true;
+      }
+   if (step == 1048 || step == 1198 || step == 1163 || step == 1131)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HELP";
+      aaaa.visible = true;
+      }
+   if (step == 1054)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS COMING BACK";
+      aaaa.visible = true;
+      }
+   if (step == 1066)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "AND NOW I OUT OF CONTROL";
+      aaaa.visible = true;
+      }
+   if (step == 1082)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "UU AAA";
+      aaaa.visible = true;
+      } 
+   if (step == 1090)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "LALALA";
+      aaaa.visible = true;
+      }  
+   if (step == 1105)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "IN MY BODY";
+      aaaa.visible = true;
+      } 
+   if (step == 1121)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "H-H-HELP";
+      aaaa.visible = true;
+      }  
+   if (step == 1138)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "OUT OF CONTROL";
+      aaaa.visible = true;
+      }  
+   if (step == 1167)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "AUCH";
+      aaaa.visible = true;
+      } 
+   if (step == 1180 || step == 1245)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "CONTROL";
+      aaaa.visible = true;
+      } 
+   if (step == 1187 || step == 1251 || step == 1209)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "ME";
+      aaaa.visible = true;
+      } 
+   if (step == 1223)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "AAAAA!!";
+      aaaa.visible = true;
+      } 
+   if (step == 1230)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE";
+      aaaa.visible = true;
+      }
+   if (step == 1236)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "IS";
+      aaaa.visible = true;
+      }
+   if (step == 1438)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "KILL ME";
+      aaaa.visible = true;
+      }
+   if (step == 1447)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "I GIVE UP";
+      aaaa.visible = true;
+      }
+   if (step == 1451)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "I GIVE UP!";
+      aaaa.visible = true;
+      }
+   if (step == 1455)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS TAKE OVER";
+      aaaa.visible = true;
+      }
+   if (step == 1460)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS TAKE OVER!!";
+      aaaa.visible = true;
+      }
+   if (step == 1473)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE GOING INSANOE";
+      aaaa.visible = true;
+      }
+   if (step == 1488)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "TAKE ME";
+      aaaa.visible = true;
+      }
+   if (step == 1500)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "TO MY DEAD";
+      aaaa.visible = true;
+      }
+   if (step == 1510)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "UUAAA";
+      aaaa.visible = true;
+      }
+   if (step == 1516)
+      {
+      aaaa.color = 0x133d80;
+      aaaa.text = "HE IS EVIL";
+      aaaa.visible = true;
+      }
+
+// fleetway time
+   if (step == 385)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HAAAAH";
+      aaaa.visible = true;
+      }
+   if (step == 394 || step == 1641 || step == 1631 || step == 1373 || step == 1317 || step == 777 || step == 547 || step == 493 || step == 504 || step == 580)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HA HA";
+      aaaa.visible = true;
+      }
+   if (step == 400)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HE WILL NEVER COME BACK";
+      aaaa.visible = true;
+      }
+   if (step == 414 || step == 1624 || step == 1582 || step == 1399 || step == 1169 || step == 887 || step == 770 || step == 498)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HAHAHAH";
+      aaaa.visible = true;
+      }
+   if (step == 420 || step == 519)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "LOOK AT THAT";
+      aaaa.visible = true;
+      }
+   if (step == 428)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "IM BE STUNOID";
+      aaaa.visible = true;
+      }
+   if (step == 442 || step == 1591 || step == 1014 || step == 948 || step == 929 || step == 486)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HAHAHAH!";
+      aaaa.visible = true;
+      }
+   if (step == 451)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "LOOK AT HIM";
+      aaaa.visible = true;
+      }
+   if (step == 464 || step == 1303)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HE IS";
+      aaaa.visible = true;
+      }
+   if (step == 473)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "SOME LITTLE STUNOID";
+      aaaa.visible = true;
+      }
+   if (step == 510 || step == 572)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "UUUUU";
+      aaaa.visible = true;
+      }
+   if (step == 533)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "IM DO THAT AGAIN";
+      aaaa.visible = true;
+      }
+   if (step == 552)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HE IS DIED";
+      aaaa.visible = true;
+      }
+   if (step == 560)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HE IS DIED!";
+      aaaa.visible = true;
+      }
+   if (step == 564)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HE IS DIED!!!";
+      aaaa.visible = true;
+      }
+   if (step == 592 || step == 1576)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "SONIC";
+      aaaa.visible = true;
+      }
+   if (step == 600)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "IS";
+      aaaa.visible = true;
+      }
+   if (step == 611)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "NEVER";
+      aaaa.visible = true;
+      }
+   if (step == 622)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "GO BACK";
+      aaaa.visible = true;
+      }
+   if (step == 630)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "NOOOO";
+      aaaa.visible = true;
+      }
+   if (step == 781)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "LOOK AT ME";
+      aaaa.visible = true;
+      }
+   if (step == 788)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "BE IN ONE BODY";
+      aaaa.visible = true;
+      }
+   if (step == 798)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "STILL IN CONTROL";
+      aaaa.visible = true;
+      }
+   if (step == 806)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "NOW OUT OF CONTROL";
+      aaaa.visible = true;
+      }
+   if (step == 818)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "NOW";
+      aaaa.visible = true;
+      }
+   if (step == 825)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "STILL";
+      aaaa.visible = true;
+      }
+   if (step == 836)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "NOT LIKE HIM";
+      aaaa.visible = true;
+      }
+   if (step == 844)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "KILLING PEOPLE LIKE A GOD";
+      aaaa.visible = true;
+      }
+   if (step == 858)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "BUT DONT KILL ME";
+      aaaa.visible = true;
+      }
+   if (step == 873)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "IM BE IDINOT";
+      aaaa.visible = true;
+      }
+   if (step == 895)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "CANT CONTROL MYSELF";
+      aaaa.visible = true;
+      }
+   if (step == 905 || step == 1600 || step == 985)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "LOOK AT YOU";
+      aaaa.visible = true;
+      }
+   if (step == 908)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "CONFUSED ABOUT MYSELF";
+      aaaa.visible = true;
+      }
+   if (step == 917)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "YOU LITTLE IDINOT";
+      aaaa.visible = true;
+      }
+   if (step == 925)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "WHERE IS HIM";
+      aaaa.visible = true;
+      }
+   if (step == 938)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HES GONE!!!";
+      aaaa.visible = true;
+      }
+   if (step == 955)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "ONLY ONE MAN HERE";
+      aaaa.visible = true;
+      }
+   if (step == 962)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "AND ITS ME";
+      aaaa.visible = true;
+      }
+   if (step == 968)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "ITS ME";
+      aaaa.visible = true;
+      }
+   if (step == 973)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "AND ITS ME!";
+      aaaa.visible = true;
+      }
+   if (step == 979)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "AND ITS ME!!!";
+      aaaa.visible = true;
+      }
+   if (step == 994)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "GO TO HELL";
+      aaaa.visible = true;
+      }
+   if (step == 1003)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "SHUT.";
+      aaaa.visible = true;
+      }
+   if (step == 1152)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HA";
+      aaaa.visible = true;
+      }
+   if (step == 1283)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "FORGOT";
+      aaaa.visible = true;
+      }
+   if (step == 1291)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "OBOUT HIM";
+      aaaa.visible = true;
+      }
+   if (step == 1310)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "TALK ABOUT";
+      aaaa.visible = true;
+      }
+   if (step == 1323)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HE IDINOT";
+      aaaa.visible = true;
+      }
+   if (step == 1334)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "HAHAHAHAHA";
+      aaaa.visible = true;
+      }
+   if (step == 1341)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "LOOK AT ME NOW";
+      aaaa.visible = true;
+      }
+   if (step == 1377)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "THAT WAS CLOSE";
+      aaaa.visible = true;
+      }
+   if (step == 1538)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "UAA";
+      aaaa.visible = true;
+      }
+   if (step == 1541)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "UAA!!!";
+      aaaa.visible = true;
+      }
+   if (step == 1550)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "SHUT UP";
+      aaaa.visible = true;
+      }
+   if (step == 1557)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "SHUT UP!!";
+      aaaa.visible = true;
+      }
+   if (step == 1564)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "YOU STUNOID";
+      aaaa.visible = true;
+      }
+   if (step == 1608)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "LOOK AT YOU!!!";
+      aaaa.visible = true;
+      }
+   if (step == 1616)
+      {
+      aaaa.color = 0xffd321;
+      aaaa.text = "NOW";
+      aaaa.visible = true;
+      }
+   if (step == 1648)
+      {
+      removeSprite(aaaa);
+      }
+// the end of our journey
+   }    
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+
+function fleetway()
+{
+if (maniamode == false)
+   {
+old = currentPlayState.boyfriend;
+boyfriend.visible = false;
+fleet.visible = true;
+bg.visible = false;
+static.alpha = 0.5;
+currentPlayState.boyfriend = fleet;
+boyfriend.followCamX = 100;
+fleet.followCamX = 100;
+			new FlxTimer().start(0.1, function(tmr) {
+                        FlxTween.tween(static, {alpha: 0}, 1);
+			});
+iconP1.switchAnim("fleetwaycn");
+FlxG.sound.play("assets/sounds/stat.ogg", 0.3);
+   }
+if (maniamode == true)
+   {
+boyfriend.visible = false;
+dad.visible = true;
+bg.visible = false;
+static.alpha = 0.5;
+			new FlxTimer().start(0.1, function(tmr) {
+                        FlxTween.tween(static, {alpha: 0}, 1);
+			});
+iconP1.alpha = 0;
+iconP2.alpha = 1;
+FlxG.sound.play("assets/sounds/stat.ogg", 0.3);
+   }
+   
+}
+
+function sonic()
+{
+if (maniamode == false)
+   {
+boyfriend.visible = true;
+fleet.visible = false;
+bg.visible = true;
+currentPlayState.boyfriend = old;
+static.alpha = 0.5;
+			new FlxTimer().start(0.1, function(tmr) {
+                        FlxTween.tween(static, {alpha: 0}, 1);
+			});
+iconP1.switchAnim("soniccn");
+FlxG.sound.play("assets/sounds/stat.ogg", 0.3);
+   }
+if (maniamode == true)
+   {
+boyfriend.visible = true;
+dad.visible = false;
+bg.visible = true;
+static.alpha = 0.5;
+			new FlxTimer().start(0.1, function(tmr) {
+                        FlxTween.tween(static, {alpha: 0}, 1);
+			});
+iconP1.alpha = 1;
+iconP2.alpha = 0;
+FlxG.sound.play("assets/sounds/stat.ogg", 0.3);
+   }
+}
+

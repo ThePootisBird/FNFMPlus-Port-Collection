@@ -1,0 +1,55 @@
+trace(": )");
+// char is a Character
+function init(char) {
+    trace(": )");
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'char.png', hscriptPath + 'char.xml');
+    trace(": )");
+    char.frames = tex;
+    char.animation.addByPrefix('idle', 'SINK IDLE', 24, false);
+    char.animation.addByPrefix('singLEFT', 'SINK LEFT', 24, false);
+    char.animation.addByIndices('singRIGHT', 'SINK RIGHT', [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23], "", 24, false);   
+    char.animation.addByPrefix('singLEFTmiss', 'MISS SINK LEFT',24, false);
+    char.animation.addByPrefix('singRIGHTmiss', 'MISS SINK RIGHT',24,false);
+    char.animation.addByIndices('singUP', 'SINK UP', [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23], "", 24, false);   
+    char.animation.addByPrefix('singDOWN', 'SINK DOWN', 24, false);
+    char.animation.addByPrefix('singUPmiss', 'MISS SINK UP', 24, false);  
+    char.animation.addByPrefix('singDOWNmiss', 'MISS SINK DOWN', 24, false);
+
+    char.addOffset('idle', 0);
+    char.addOffset('singUP', 1, 223);
+    char.addOffset('singRIGHT', 13 -7);
+    char.addOffset('singLEFT', 192, 4);
+    char.addOffset('singDOWN', 2, -31);
+    char.addOffset('singUPmiss', 20, 516);
+    char.addOffset('singRIGHTmiss', 79, 318);
+    char.addOffset('singLEFTmiss', 252, 266);
+    char.addOffset('singDOWNmiss', 1, -31);
+
+    char.playAnim('idle');
+
+    char.flipX = true;
+    char.like = "sink";
+    char.likeBf = true;
+
+    char.enemyOffsetX = 0;
+    char.enemyOffsetY = 350;
+    char.playerOffsetX = 0;
+    char.playerOffsetY = 0;
+    char.followCamX = 0;
+    char.followCamY = 0;
+    char.setGraphicSize(Std.int(char.width * 1.2));
+    char.midpointX = 0;
+    char.midpointY = 0;
+}
+portraitOffset = [0, 0];
+dadVar = 4.0;
+isPixel = false;
+function update(elapsed, char) {
+    // do nothing...
+}
+var danced = false;
+function dance(char) {
+    trace(": )");
+    char.playAnim('idle');
+}
+trace("done");
