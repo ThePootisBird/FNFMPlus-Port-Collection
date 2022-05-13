@@ -1,0 +1,63 @@
+trace(": )");
+// char is a Character
+function init(char) {
+    trace(": )");
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'char.png', hscriptPath + 'char.xml');
+    trace(": )");
+    char.frames = tex;
+    char.animation.addByPrefix('idle', 'NewPhase2Sonic Idle', 24, false);
+    char.animation.addByPrefix('singUP', 'NewPhase2Sonic Up', 24, false);
+    char.animation.addByPrefix('singLEFT','NewPhase2Sonic Left', 24, false);
+    char.animation.addByPrefix('singRIGHT', 'NewPhase2Sonic Right', 24, false);
+    char.animation.addByPrefix('singDOWN', 'NewPhase2Sonic Down', 24, false);
+    char.animation.addByPrefix('singDOWN-alt', 'NewPhase2Sonic Laugh', 24, false);
+    char.animation.addByPrefix('singUP-alt', 'NewPhase2Sonic Laugh', 24, false);
+    trace("finish anim");
+
+    char.addOffset('idle', 110, 30);
+    char.addOffset('singUP', 254, 190);
+    char.addOffset('singRIGHT', 107, 73);
+    char.addOffset('singLEFT', 290, 30);
+    char.addOffset('singDOWN', 334, -83);
+    char.addOffset('singDOWN-alt', 70, 160);
+    char.addOffset('singUP-alt', 70, 160);
+if (char.isPlayer) {
+    char.addOffset('idle', -20, 46);
+    char.addOffset('singUP', -31, 11);
+    char.addOffset('singRIGHT', 18, -96);
+    char.addOffset('singLEFT', 10, -143);
+    char.addOffset('singDOWN', -73, -107);
+    }
+
+    char.playAnim('idle');
+
+    char.flipX = false;
+
+    char.enemyOffsetX = 0;
+    char.enemyOffsetY = 0;
+    char.playerOffsetX = 0;
+    char.playerOffsetY = -350;
+    char.followCamX = 109;
+    char.followCamY = -50;
+if (char.isPlayer)
+   {
+   char.followCamY = 50;
+   }
+    char.midpointX = 0;
+    char.midpointY = 0;
+}
+portraitOffset = [0, 0];
+dadVar = 6.1;
+isPixel = false;
+function update(elapsed, char) {
+    // do nothing...
+
+//I'M GONNA GETCHA!
+//I...AM..GOD!!!!!!
+}
+var danced = false;
+function dance(char) {
+    trace(": )");
+    char.playAnim('idle');
+}
+trace("done");

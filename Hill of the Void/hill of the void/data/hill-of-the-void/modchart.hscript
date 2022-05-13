@@ -1,0 +1,72 @@
+
+function start(song) {
+    screenstatic2 = new FlxSprite(0,0);
+    screenstatic2.frames = FlxAtlasFrames.fromSparrow('assets/images/custom_stages/tooslow/hitStatic.png', 'assets/images/custom_stages/tooslow/hitStatic.xml');
+    screenstatic2.animation.addByPrefix("static", "staticANIMATION", 24, true);    
+    screenstatic2.animation.play("static");
+    screenstatic2.setGraphicSize(FlxG.width, FlxG.height);
+    screenstatic2.alpha = 0;
+    screenstatic2.cameras = [camHUD];
+    screenstatic2.screenCenter();
+    addSprite(screenstatic2, BEHIND_NONE);        
+}
+
+
+function beatHit(beat)
+{
+}
+
+function update(elapsed)
+{
+		    
+}
+		    
+
+
+function stepHit(step)
+{  
+
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+
+}
+
+function doodoo()
+{
+FlxG.sound.play('assets/images/custom_stages/tooslow/hitStatic1.ogg');
+screenstatic2.alpha = 0.7;
+                                        new FlxTimer().start(0.4, function(tmr)
+					{
+					screenstatic2.alpha = 0;
+					});
+}
+
+function poopoo()
+{
+                                         new FlxTimer().start(0.1, function(tmr)
+					{
+                                        currentPlayState.health -= 0.010;
+					}, 50);
+}

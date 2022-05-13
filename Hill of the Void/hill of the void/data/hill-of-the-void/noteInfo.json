@@ -1,0 +1,59 @@
+[
+
+    {
+
+        "animNames": [
+            "purple death",
+            "blue death",
+            "green death",
+            "red death"
+        ],
+
+        "animInt": [32,33,34,35],
+	"healCutoff":shit,
+        "healAmount": 0.04,
+        "damageAmount": -0.50,
+        "consistentHealth": false,
+        "shouldSing": true,
+	"id":glitch,
+        "noteMiss": "doodoo"
+
+    }
+
+    {
+
+        "animNames": [
+            "purple life",
+            "blue life",
+            "green life",
+            "red life"
+        ],
+
+        "animInt": [32,33,34,35],
+	"healCutoff":shit,
+        "healAmount": -0.25,
+        "consistentHealth": false,
+        "shouldSing": false,
+        "damageAmount": -0.25,
+	"id":phantom,
+        "noteHit": "poopoo"
+
+    }    {
+
+        "animNames": [
+            "purple life",
+            "blue life",
+            "green life",
+            "red life"
+        ],
+
+        "animInt": [32,33,34,35],
+	"healCutoff":shit,
+        "healAmount": -0,
+        "consistentHealth": false,
+        "shouldSing": true,
+        "damageAmount": -0,
+	"id":enemyphantom,
+
+    }
+]

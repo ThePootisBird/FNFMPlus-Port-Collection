@@ -1,0 +1,278 @@
+function start(song) {
+    bg3 = new FlxSprite(0, 0);
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'NewTitleMenuBG.png', hscriptPath + 'NewTitleMenuBG.xml');
+    bg3.frames = tex;
+    bg3.animation.addByPrefix("idle", "TitleMenuSSBG instance 1", 24, true);
+    bg3.animation.play("idle");
+    bg3.screenCenter();
+    bg3.scale.x = 4.5;
+    bg3.scale.y = 4.5;
+    bg3.antialiasing = true;
+    bg3.visible = false;
+    addSprite(bg3, BEHIND_ALL);
+    bgr = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'Glitch.png');
+    bgr.scrollFactor.set(0.1, 0.1);
+    bgr.antialiasing = true;
+    stagecurtains2r = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'Trees.png');
+    stagecurtains2r.scrollFactor.set(0.5, 0.5);
+    stagecurtains2r.updateHitbox();
+    stagecurtains2r.antialiasing = true;
+    addSprite(stagecurtains2r, BEHIND_ALL);
+    stagecurtainsr = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'Trees2.png');
+    stagecurtainsr.scrollFactor.set(0.7, 0.7);
+    stagecurtainsr.updateHitbox();
+    stagecurtainsr.antialiasing = true;
+    addSprite(stagecurtainsr, BEHIND_ALL);
+    stageFrontr = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'Grass.png');
+    stageFrontr.scrollFactor.set(0.9, 0.9);
+    stageFrontr.antialiasing = true;
+    stageFrontr.updateHitbox();
+    addSprite(stageFrontr, BEHIND_ALL);
+    bg = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'Glitch.png');
+    bg.scrollFactor.set(0.1, 0.1);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    stagecurtains2 = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'BlueTree2.png');
+    stagecurtains2.scrollFactor.set(0.5, 0.5);
+    stagecurtains2.updateHitbox();
+    stagecurtains2.antialiasing = true;
+    addSprite(stagecurtains2, BEHIND_ALL);
+    stagecurtains = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'BlueTree1.png');
+    stagecurtains.scrollFactor.set(0.7, 0.7);
+    stagecurtains.updateHitbox();
+    stagecurtains.antialiasing = true;
+    addSprite(stagecurtains, BEHIND_ALL);
+    stageFront = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'BlueGrass.png');
+    stageFront.scrollFactor.set(0.9, 0.9);
+    stageFront.antialiasing = true;
+    stageFront.updateHitbox();
+    addSprite(stageFront, BEHIND_ALL);
+    stageFront2 = new FlxSprite(0,0).loadGraphic(hscriptPath + 'RedVG.png');
+    stageFront2.antialiasing = true;
+    stageFront2.cameras = [camHUD];
+    stageFront2.screenCenter();
+    stageFront2.alpha = 0;
+    addSprite(stageFront2, BEHIND_NONE);
+    stagecurtainsr.visible = false;
+    stagecurtains2r.visible = false;
+    stageFrontr.visible = false;
+    setDefaultZoom(0.9);
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+
+function beatHit(beat)
+{
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function update(elapsed)
+{
+if (curStep > 64)
+   {
+   if (stageFront2.alpha == 1)
+      {
+      FlxTween.tween(stageFront2, {alpha: 0}, 0.8);
+      } else
+   if (stageFront2.alpha == 0)
+      {
+      FlxTween.tween(stageFront2, {alpha: 1}, 0.8);
+      }
+   }
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function stepHit(step)
+{
+if (curStep > 64)
+   {
+   camHUD.shake(0.0050, 0.08);
+   }
+if (step == 64)
+   {
+   FlxTween.tween(stageFront2, {alpha: 1}, 1);
+   }
+if (step == 249)
+   {
+   camHUD.visible = false;
+   }
+if (step == 288)
+   {
+   bg.visible = false;
+   bg3.visible = true;
+   camHUD.visible = true;
+   stagecurtainsr.visible = true;
+   stagecurtains2r.visible = true;
+   stageFrontr.visible = true;
+   stagecurtains.visible = false;
+   stagecurtains2.visible = false;
+   stageFront.visible = false;
+   }
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function playerTwoTurn()
+{
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function playerTwoMiss()
+{
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function playerTwoSing()
+{
+if (curStep > 261 && curStep < 288)
+   {
+   tweenCamIn();
+   }
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+FlxG.camera.shake(0.02, 0.08);
+}
+
+function playerOneTurn()
+{
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function playerOneMiss()
+{
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
+function playerOneSing()
+{
+if (curStep < 288)
+   {
+   bg.color = 0x002157;
+   dad.color = 0x002157;
+   boyfriend.color = 0x002157;
+   gf.color = 0x002157;
+   }
+if (curStep > 288)
+   {
+   bg.color = 0x942e2e;
+   dad.color = 0x942e2e;
+   boyfriend.color = 0x942e2e;
+   gf.color = 0x942e2e;
+   }
+}
+
