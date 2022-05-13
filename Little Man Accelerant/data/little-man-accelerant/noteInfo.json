@@ -1,0 +1,20 @@
+[
+    {
+        "animNames": [
+            "bullet left", // left note
+            "bullet down", // down note
+            "bullet up", // up note
+            "bullet right", // right note
+        ],
+        "animInt": [
+            36,
+            36,
+            36,
+            36
+        ],
+        "healAmount": 0.1,
+        "damageAmount": -1,
+
+	"id":bullet,
+    }
+]

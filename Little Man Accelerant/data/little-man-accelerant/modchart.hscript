@@ -1,0 +1,121 @@
+function start(song)
+{
+ron = new Character(100, 100, 'ron');
+}
+
+function beatHit(beat)
+{
+}
+
+function update(elapsed)
+{
+          if (getHaxeActor("dad").animation.curAnim.name == "singUP") {
+              ron.playAnim('singUP');
+		}
+          if (getHaxeActor("dad").animation.curAnim.name == "singLEFT") {
+              ron.playAnim('singLEFT');
+           	}	
+          if (getHaxeActor("dad").animation.curAnim.name == "singRIGHT") {
+              ron.playAnim('singRIGHT');
+		}		
+          if (getHaxeActor("dad").animation.curAnim.name == "singDOWN") {
+              ron.playAnim('singDOWN');
+                }
+          if (getHaxeActor("dad").animation.curAnim.name == "idle") {
+              ron.playAnim('idle');
+                }
+}
+
+function stepHit(step)
+{
+if (curStep == 21)
+   {
+   dad.playAnim('singUP');
+   };
+if (curStep == 24)
+   {
+   dad.playAnim('singRIGHT');
+   };
+if (curStep == 672)
+   {
+   dad.visible = false;
+   addSprite(ron, BEHIND_DAD | BEHIND_BF);
+   iconP2.switchAnim("ron");
+   };
+if (curStep == 800)
+   {
+   dad.visible = true;
+   ron.visible = false;
+   iconP2.switchAnim("littlemans");
+   };
+if (curStep == 864)
+   {
+   dad.visible = false;
+   ron.visible = true;
+   iconP2.switchAnim("ron");
+   };
+if (curStep > 936)
+   {
+   ron.alpha -= 0.1;
+   };
+if (curStep == 944)
+   {
+   dad.visible = true;
+   ron.visible = false;
+   iconP2.switchAnim("littlemans");
+   };
+}
+function playerTwoTurn()
+{
+    
+}
+
+function playerTwoMiss()
+{
+    
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+  currentPlayState.notes.forEachAlive(function (daNote)
+    {
+      if (daNote.coolId == 'bullet')
+        {
+          FlxG.sound.play('assets/images/custom_stages/accelerant/ImpactSplat.ogg');
+          boyfriend.playAnim('hit');
+        }
+    });
+}
+
+function playerOneSing()
+{
+  currentPlayState.notes.forEachAlive(function (daNote)
+    {
+      if (daNote.coolId == 'bullet')
+        {
+          if (getHaxeActor("boyfriend").animation.curAnim.name == "singUP") {
+              dad.playAnim('shoot');
+		}
+          if (getHaxeActor("boyfriend").animation.curAnim.name == "singLEFT") {
+              dad.playAnim('shoot');
+
+		}	
+          if (getHaxeActor("boyfriend").animation.curAnim.name == "singRIGHT") {
+              dad.playAnim('shoot');
+
+		}		
+          if (getHaxeActor("boyfriend").animation.curAnim.name == "singDOWN") {
+              dad.playAnim('shoot');
+                }
+          boyfriend.playAnim('dodge');
+        }
+    });
+}

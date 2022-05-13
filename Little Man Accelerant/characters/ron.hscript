@@ -1,0 +1,58 @@
+trace(": )");
+// char is a Character
+function init(char) {
+    trace(": )");
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'char.png', hscriptPath + 'char.xml');
+    trace(": )");
+    char.frames = tex;
+    char.animation.addByPrefix('idle', 'Idle', 31, false);
+    char.animation.addByPrefix('singUP', 'Sing Up', 24, false);
+    char.animation.addByPrefix('singLEFT','Sing Left', 24, false);
+    char.animation.addByPrefix('singRIGHT', 'Sing Right', 24, false);
+    char.animation.addByPrefix('singDOWN', 'Sing Down', 24, false);
+    char.animation.addByPrefix('ugh', 'Ugh', 24, false);
+    trace("finish anim");
+
+    char.addOffset('idle', 0, -240);
+    char.addOffset('singUP', -16, -210);
+    char.addOffset('singRIGHT', -190, -273);
+    char.addOffset('singLEFT', 190, -270);
+    char.addOffset('singDOWN', 0, -350);
+    char.addOffset('ugh', 0, -270);
+
+if (char.isPlayer) {
+    char.addOffset('idle', 0, 100);
+    char.addOffset('singUP', -16, 100);
+    char.addOffset('singRIGHT', -190, 100);
+    char.addOffset('singLEFT', 190, 100);
+    char.addOffset('singDOWN', 0, 0);
+    char.addOffset('ugh', 0, 100);
+    }
+
+// yeah this hscript is for high effort ugh tankman (for little man), cry about it file diggers
+
+    char.playAnim('idle');
+
+    char.flipX = false;
+
+    char.enemyOffsetX = 0;
+    char.enemyOffsetY = 0;
+    char.playerOffsetX = 0;
+    char.playerOffsetY = 0;
+    char.followCamX = 259;
+    char.followCamY = 100;
+    char.midpointX = 0;
+    char.midpointY = 0;
+}
+portraitOffset = [0, 0];
+dadVar = 6.1;
+isPixel = false;
+function update(elapsed, char) {
+    // do nothing...
+}
+var danced = false;
+function dance(char) {
+    trace(": )");
+    char.playAnim('idle');
+}
+trace("done");
