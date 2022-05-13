@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="SONIC LORD.png">
+	<!-- Created with Adobe Animate version 20.5.0.29329 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="fakedown0000" x="0" y="0" width="434" height="542"/>
+	<SubTexture name="fakedown0001" x="0" y="0" width="434" height="542"/>
+	<SubTexture name="fakedown0002" x="438" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0003" x="438" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0004" x="875" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0005" x="875" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0006" x="1312" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0007" x="1312" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0008" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0009" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0010" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0011" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0012" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0013" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0014" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0015" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0016" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0017" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0018" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakedown0019" x="1749" y="0" width="433" height="542" frameX="0" frameY="0" frameWidth="434" frameHeight="542"/>
+	<SubTexture name="fakeidle0000" x="2186" y="0" width="380" height="557"/>
+	<SubTexture name="fakeidle0001" x="2186" y="0" width="380" height="557"/>
+	<SubTexture name="fakeidle0002" x="2570" y="0" width="373" height="557" frameX="-4" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0003" x="2570" y="0" width="373" height="557" frameX="-4" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0004" x="2947" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0005" x="2947" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0006" x="3321" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0007" x="3321" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0008" x="3695" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0009" x="3695" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0010" x="3695" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0011" x="3695" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0012" x="3695" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeidle0013" x="3695" y="0" width="370" height="557" frameX="-7" frameY="0" frameWidth="380" frameHeight="557"/>
+	<SubTexture name="fakeleft0000" x="0" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0001" x="0" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0002" x="417" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0003" x="417" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0004" x="834" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0005" x="834" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0006" x="1251" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0007" x="1251" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0008" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0009" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0010" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0011" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0012" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0013" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0014" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0015" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0016" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0017" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0018" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeleft0019" x="1668" y="561" width="413" height="579"/>
+	<SubTexture name="fakeright0000" x="2085" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0001" x="2085" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0002" x="2572" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0003" x="2572" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0004" x="3059" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0005" x="3059" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0006" x="3546" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0007" x="3546" y="561" width="483" height="560"/>
+	<SubTexture name="fakeright0008" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0009" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0010" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0011" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0012" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0013" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0014" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0015" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0016" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0017" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0018" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeright0019" x="0" y="1144" width="483" height="560"/>
+	<SubTexture name="fakeup0000" x="487" y="1144" width="411" height="618"/>
+	<SubTexture name="fakeup0001" x="487" y="1144" width="411" height="618"/>
+	<SubTexture name="fakeup0002" x="902" y="1144" width="411" height="618"/>
+	<SubTexture name="fakeup0003" x="902" y="1144" width="411" height="618"/>
+	<SubTexture name="fakeup0004" x="1317" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0005" x="1317" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0006" x="1732" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0007" x="1732" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0008" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0009" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0010" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0011" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0012" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0013" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0014" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0015" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0016" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0017" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0018" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+	<SubTexture name="fakeup0019" x="2147" y="1144" width="411" height="617" frameX="0" frameY="0" frameWidth="411" frameHeight="618"/>
+</TextureAtlas>

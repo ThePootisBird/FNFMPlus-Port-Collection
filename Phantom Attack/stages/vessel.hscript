@@ -1,0 +1,1479 @@
+var wordVoid = false;
+var sequence = false;
+var followchars = true;
+var modchart = true;
+var stepList = [1220, 1268, 1360, 1508, 2010, 2070, 2134];
+var sequenceNumber = 0;
+var numbersL = [];
+var void = ['V', 'O', 'I', 'D'];
+var pressed = [];
+var letterPos = 1;
+var keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var kP = [];
+var x = [];
+var y = [];
+var chosenLetter;
+var coolLetter = '';
+var chosenLetter2;
+var coolLetter2 = '';
+var chosenLetter3;
+var coolLetter3 = '';
+var chosenLetter4;
+var coolLetter4 = '';
+
+
+// the original way i tried to do this is by "translating" the original lua script to haxe
+// it did not go well
+// so i have to do it in this shitty method.
+// this is the biggest stage hscript in my entire game, second place is triple trouble
+// also the reason why the letter r is never in the mechanic is because it will instantly kill when pressed
+
+function start(song) {
+    bg = new FlxSprite(0,0).loadGraphic(hscriptPath + 'welcome.png');
+    bg.scrollFactor.set(0.7, 0.9);
+    bg.antialiasing = true;
+    boyfriend.alpha = 0;
+    gf.alpha = 0;
+    addSprite(bg, BEHIND_ALL);
+    setDefaultZoom(0.69);
+    dad.x = 910;
+    dad.followCamX -= 150;
+    dad.y = 170;
+    boyfriend.followCamX -= 90;
+    boyfriend.followCamY += 140;
+    x = new Character(980, 180, 'lordxpa');
+    x.alpha = 0.001;
+    addSprite(x, BEHIND_NONE);
+    chosenLetter = FlxG.random.int(1,25);
+    chosenLetter2 = FlxG.random.int(1,25);
+    chosenLetter3 = FlxG.random.int(1,25);
+    chosenLetter4 = FlxG.random.int(1,25);
+for (strum in enemyStrums)
+    {
+    strum.x -= 2000;
+    }
+}
+
+function onVoidEvent()
+{
+   currentPlayState.demoMode = true;
+   wordVoid = true;
+   letterPos = 1;
+   sequence = true;
+   cross1 = new FlxSprite(getHaxeActor(4).x, getHaxeActor(4).y).loadGraphic(hscriptPath + 'cross.png');
+   cross1.cameras = [camHUD];
+   cross1.antialiasing = true;
+   letter1 = new FlxSprite(getHaxeActor(4).x, getHaxeActor(4).y);
+   var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'fonts.png', hscriptPath + 'fonts.xml');
+   letter1.frames = tex;
+   letter1.animation.addByPrefix("idle", coolLetter, 1, true);
+   letter1.animation.play("idle");
+   letter1.antialiasing = true;
+   letter1.cameras = [camHUD];
+   addSprite(cross1, BEHIND_NONE);
+   addSprite(letter1, BEHIND_NONE);
+   cross2 = new FlxSprite(getHaxeActor(5).x, getHaxeActor(5).y).loadGraphic(hscriptPath + 'cross.png');
+   cross2.cameras = [camHUD];
+   cross2.antialiasing = true;
+   letter2 = new FlxSprite(getHaxeActor(5).x, getHaxeActor(5).y);
+   var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'fonts.png', hscriptPath + 'fonts.xml');
+   letter2.frames = tex;
+   letter2.animation.addByPrefix("idle", coolLetter2, 1, true);
+   letter2.animation.play("idle");
+   letter2.antialiasing = true;
+   letter2.cameras = [camHUD];
+   addSprite(cross2, BEHIND_NONE);
+   addSprite(letter2, BEHIND_NONE);
+   cross3 = new FlxSprite(getHaxeActor(6).x, getHaxeActor(6).y).loadGraphic(hscriptPath + 'cross.png');
+   cross3.cameras = [camHUD];
+   cross3.antialiasing = true;
+   letter3 = new FlxSprite(getHaxeActor(6).x, getHaxeActor(6).y);
+   var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'fonts.png', hscriptPath + 'fonts.xml');
+   letter3.frames = tex;
+   letter3.animation.addByPrefix("idle", coolLetter3, 1, true);
+   letter3.animation.play("idle");
+   letter3.antialiasing = true;
+   letter3.cameras = [camHUD];
+   addSprite(cross3, BEHIND_NONE);
+   addSprite(letter3, BEHIND_NONE);
+   cross4 = new FlxSprite(getHaxeActor(7).x, getHaxeActor(7).y).loadGraphic(hscriptPath + 'cross.png');
+   cross4.cameras = [camHUD];
+   cross4.antialiasing = true;
+   letter4 = new FlxSprite(getHaxeActor(7).x, getHaxeActor(7).y);
+   var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'fonts.png', hscriptPath + 'fonts.xml');
+   letter4.frames = tex;
+   letter4.animation.addByPrefix("idle", coolLetter4, 1, true);
+   letter4.animation.play("idle");
+   letter4.antialiasing = true;
+   letter4.cameras = [camHUD];
+   addSprite(cross4, BEHIND_NONE);
+   addSprite(letter4, BEHIND_NONE);
+
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+currentPlayState.snapToStrumline = true;
+for (strum in enemyStrums)
+    {
+    strum.x -= 2000;
+    }
+if (FlxG.keys.justPressed.A && coolLetter == 'A' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.B && coolLetter == 'B' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.C && coolLetter == 'C' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.D && coolLetter == 'D' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.E && coolLetter == 'E' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.F && coolLetter == 'F' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.G && coolLetter == 'G' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.H && coolLetter == 'H' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.I && coolLetter == 'I' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.J && coolLetter == 'J' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.K && coolLetter == 'K' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.L && coolLetter == 'L' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.M && coolLetter == 'M' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.N && coolLetter == 'N' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.O && coolLetter == 'O' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.P && coolLetter == 'P' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Q && coolLetter == 'Q' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.S && coolLetter == 'S' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.T && coolLetter == 'T' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.U && coolLetter == 'U' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.V && coolLetter == 'V' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.W && coolLetter == 'W' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.X && coolLetter == 'X' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Y && coolLetter == 'Y' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Z && coolLetter == 'Z' && letterPos == 1)
+   {
+      FlxTween.tween(cross1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross1, {y: cross1.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter1, {y: letter1.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (chosenLetter == 1)
+   {
+   coolLetter = 'A';
+   }
+if (chosenLetter == 2)
+   {
+   coolLetter = 'B';
+   }
+if (chosenLetter == 3)
+   {
+   coolLetter = 'C';
+   }
+if (chosenLetter == 4)
+   {
+   coolLetter = 'D';
+   }
+if (chosenLetter == 5)
+   {
+   coolLetter = 'E';
+   }
+if (chosenLetter == 6)
+   {
+   coolLetter = 'F';
+   }
+if (chosenLetter == 7)
+   {
+   coolLetter = 'G';
+   }
+if (chosenLetter == 8)
+   {
+   coolLetter = 'H';
+   }
+if (chosenLetter == 9)
+   {
+   coolLetter = 'I';
+   }
+if (chosenLetter == 10)
+   {
+   coolLetter = 'J';
+   }
+if (chosenLetter == 11)
+   {
+   coolLetter = 'K';
+   }
+if (chosenLetter == 12)
+   {
+   coolLetter = 'L';
+   }
+if (chosenLetter == 13)
+   {
+   coolLetter = 'M';
+   }
+if (chosenLetter == 14)
+   {
+   coolLetter = 'N';
+   }
+if (chosenLetter == 15)
+   {
+   coolLetter = 'O';
+   }
+if (chosenLetter == 16)
+   {
+   coolLetter = 'P';
+   }
+if (chosenLetter == 17)
+   {
+   coolLetter = 'Q';
+   }
+if (chosenLetter == 18)
+   {
+   coolLetter = 'S';
+   }
+if (chosenLetter == 19)
+   {
+   coolLetter = 'T';
+   }
+if (chosenLetter == 20)
+   {
+   coolLetter = 'U';
+   }
+if (chosenLetter == 21)
+   {
+   coolLetter = 'V';
+   }
+if (chosenLetter == 22)
+   {
+   coolLetter = 'W';
+   }
+if (chosenLetter == 23)
+   {
+   coolLetter = 'X';
+   }
+if (chosenLetter == 24)
+   {
+   coolLetter = 'Y';
+   }
+if (chosenLetter == 25)
+   {
+   coolLetter = 'Z';
+   }
+
+
+
+
+if (FlxG.keys.justPressed.A && coolLetter2 == 'A' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.B && coolLetter2 == 'B' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.C && coolLetter2 == 'C' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.D && coolLetter2 == 'D' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.E && coolLetter2 == 'E' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.F && coolLetter2 == 'F' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.G && coolLetter2 == 'G' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.H && coolLetter2 == 'H' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   } 
+if (FlxG.keys.justPressed.I && coolLetter2 == 'I' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.J && coolLetter2 == 'J' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.K && coolLetter2 == 'K' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.L && coolLetter2 == 'L' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.M && coolLetter2 == 'M' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.N && coolLetter2 == 'N' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.O && coolLetter2 == 'O' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.P && coolLetter2 == 'P' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Q && coolLetter2 == 'Q' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.S && coolLetter2 == 'S' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.T && coolLetter2 == 'T' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.U && coolLetter2 == 'U' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.V && coolLetter2 == 'V' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.W && coolLetter2 == 'W' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.X && coolLetter2 == 'X' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Y && coolLetter2 == 'Y' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Z && coolLetter2 == 'Z' && letterPos == 2)
+   {
+      FlxTween.tween(cross2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross2, {y: cross2.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter2, {y: letter2.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (chosenLetter2 == 1)
+   {
+   coolLetter2 = 'A';
+   }
+if (chosenLetter2 == 2)
+   {
+   coolLetter2 = 'B';
+   }
+if (chosenLetter2 == 3)
+   {
+   coolLetter2 = 'C';
+   }
+if (chosenLetter2 == 4)
+   {
+   coolLetter2 = 'D';
+   }
+if (chosenLetter2 == 5)
+   {
+   coolLetter2 = 'E';
+   }
+if (chosenLetter2 == 6)
+   {
+   coolLetter2 = 'F';
+   }
+if (chosenLetter2 == 7)
+   {
+   coolLetter2 = 'G';
+   }
+if (chosenLetter2 == 8)
+   {
+   coolLetter2 = 'H';
+   }
+if (chosenLetter2 == 9)
+   {
+   coolLetter2 = 'I';
+   }
+if (chosenLetter2 == 10)
+   {
+   coolLetter2 = 'J';
+   }
+if (chosenLetter2 == 11)
+   {
+   coolLetter2 = 'K';
+   }
+if (chosenLetter2 == 12)
+   {
+   coolLetter2 = 'L';
+   }
+if (chosenLetter2 == 13)
+   {
+   coolLetter2 = 'M';
+   }
+if (chosenLetter2 == 14)
+   {
+   coolLetter2 = 'N';
+   }
+if (chosenLetter2 == 15)
+   {
+   coolLetter2 = 'O';
+   }
+if (chosenLetter2 == 16)
+   {
+   coolLetter2 = 'P';
+   }
+if (chosenLetter2 == 17)
+   {
+   coolLetter2 = 'Q';
+   }
+if (chosenLetter2 == 18)
+   {
+   coolLetter2 = 'S';
+   }
+if (chosenLetter2 == 19)
+   {
+   coolLetter2 = 'T';
+   }
+if (chosenLetter2 == 20)
+   {
+   coolLetter2 = 'U';
+   }
+if (chosenLetter2 == 21)
+   {
+   coolLetter2 = 'V';
+   }
+if (chosenLetter2 == 22)
+   {
+   coolLetter2 = 'W';
+   }
+if (chosenLetter2 == 23)
+   {
+   coolLetter2 = 'X';
+   }
+if (chosenLetter2 == 24)
+   {
+   coolLetter2 = 'Y';
+   }
+if (chosenLetter2 == 25)
+   {
+   coolLetter2 = 'Z';
+   }
+
+
+
+if (FlxG.keys.justPressed.A && coolLetter3 == 'A' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.B && coolLetter3 == 'B' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.C && coolLetter3 == 'C' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.D && coolLetter3 == 'D' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.E && coolLetter3 == 'E' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.F && coolLetter3 == 'F' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.G && coolLetter3 == 'G' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.H && coolLetter3 == 'H' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   } 
+if (FlxG.keys.justPressed.I && coolLetter3 == 'I' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.J && coolLetter3 == 'J' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.K && coolLetter3 == 'K' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.L && coolLetter3 == 'L' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.M && coolLetter3 == 'M' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.N && coolLetter3 == 'N' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.O && coolLetter3 == 'O' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.P && coolLetter3 == 'P' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Q && coolLetter3 == 'Q' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.S && coolLetter3 == 'S' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.T && coolLetter3 == 'T' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.U && coolLetter3 == 'U' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.V && coolLetter3 == 'V' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.W && coolLetter3 == 'W' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.X && coolLetter3 == 'X' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Y && coolLetter3 == 'Y' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (FlxG.keys.justPressed.Z && coolLetter3 == 'Z' && letterPos == 3)
+   {
+      FlxTween.tween(cross3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross3, {y: cross3.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter3, {y: letter3.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+   }
+if (chosenLetter3 == 1)
+   {
+   coolLetter3 = 'A';
+   }
+if (chosenLetter3 == 2)
+   {
+   coolLetter3 = 'B';
+   }
+if (chosenLetter3 == 3)
+   {
+   coolLetter3 = 'C';
+   }
+if (chosenLetter3 == 4)
+   {
+   coolLetter3 = 'D';
+   }
+if (chosenLetter3 == 5)
+   {
+   coolLetter3 = 'E';
+   }
+if (chosenLetter3 == 6)
+   {
+   coolLetter3 = 'F';
+   }
+if (chosenLetter3 == 7)
+   {
+   coolLetter3 = 'G';
+   }
+if (chosenLetter3 == 8)
+   {
+   coolLetter3 = 'H';
+   }
+if (chosenLetter3 == 9)
+   {
+   coolLetter3 = 'I';
+   }
+if (chosenLetter3 == 10)
+   {
+   coolLetter3 = 'J';
+   }
+if (chosenLetter3 == 11)
+   {
+   coolLetter3 = 'K';
+   }
+if (chosenLetter3 == 12)
+   {
+   coolLetter3 = 'L';
+   }
+if (chosenLetter3 == 13)
+   {
+   coolLetter3 = 'M';
+   }
+if (chosenLetter3 == 14)
+   {
+   coolLetter3 = 'N';
+   }
+if (chosenLetter3 == 15)
+   {
+   coolLetter3 = 'O';
+   }
+if (chosenLetter3 == 16)
+   {
+   coolLetter3 = 'P';
+   }
+if (chosenLetter3 == 17)
+   {
+   coolLetter3 = 'Q';
+   }
+if (chosenLetter3 == 18)
+   {
+   coolLetter3 = 'S';
+   }
+if (chosenLetter3 == 19)
+   {
+   coolLetter3 = 'T';
+   }
+if (chosenLetter3 == 20)
+   {
+   coolLetter3 = 'U';
+   }
+if (chosenLetter3 == 21)
+   {
+   coolLetter3 = 'V';
+   }
+if (chosenLetter3 == 22)
+   {
+   coolLetter3 = 'W';
+   }
+if (chosenLetter3 == 23)
+   {
+   coolLetter3 = 'X';
+   }
+if (chosenLetter3 == 24)
+   {
+   coolLetter3 = 'Y';
+   }
+if (chosenLetter3 == 25)
+   {
+   coolLetter3 = 'Z';
+   }
+
+
+
+
+if (FlxG.keys.justPressed.A && coolLetter4 == 'A' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.B && coolLetter4 == 'B' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.C && coolLetter4 == 'C' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.D && coolLetter4 == 'D' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.E && coolLetter4 == 'E' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.F && coolLetter4 == 'F' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.G && coolLetter4 == 'G' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.H && coolLetter4 == 'H' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.I && coolLetter4 == 'I' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.J && coolLetter4 == 'J' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.K && coolLetter4 == 'K' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.L && coolLetter4 == 'L' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.M && coolLetter4 == 'M' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.N && coolLetter4 == 'N' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.O && coolLetter4 == 'O' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.P && coolLetter4 == 'P' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.Q && coolLetter4 == 'Q' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = letterPos + 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.S && coolLetter4 == 'S' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.T && coolLetter4 == 'T' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.U && coolLetter4 == 'U' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.V && coolLetter4 == 'V' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.W && coolLetter == 'W' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.X && coolLetter4 == 'X' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.Y && coolLetter4 == 'Y' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (FlxG.keys.justPressed.Z && coolLetter4 == 'Z' && letterPos == 4)
+   {
+      FlxTween.tween(cross4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(cross4, {y: cross4.y + 100}, 0.2, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {alpha: 0}, 0.3, {ease: FlxEase.circInOut});
+      FlxTween.tween(letter4, {y: letter4.y - 100}, 0.2, {ease: FlxEase.circInOut});
+      letterPos = 1;
+      currentPlayState.demoMode = false;
+      sequence = false;
+      reroll();
+   }
+if (chosenLetter4 == 1)
+   {
+   coolLetter4 = 'A';
+   }
+if (chosenLetter4 == 2)
+   {
+   coolLetter4 = 'B';
+   }
+if (chosenLetter4 == 3)
+   {
+   coolLetter4 = 'C';
+   }
+if (chosenLetter4 == 4)
+   {
+   coolLetter4 = 'D';
+   }
+if (chosenLetter4 == 5)
+   {
+   coolLetter4 = 'E';
+   }
+if (chosenLetter4 == 6)
+   {
+   coolLetter4 = 'F';
+   }
+if (chosenLetter4 == 7)
+   {
+   coolLetter4 = 'G';
+   }
+if (chosenLetter4 == 8)
+   {
+   coolLetter4 = 'H';
+   }
+if (chosenLetter4 == 9)
+   {
+   coolLetter4 = 'I';
+   }
+if (chosenLetter4 == 10)
+   {
+   coolLetter4 = 'J';
+   }
+if (chosenLetter4 == 11)
+   {
+   coolLetter4 = 'K';
+   }
+if (chosenLetter4 == 12)
+   {
+   coolLetter4 = 'L';
+   }
+if (chosenLetter4 == 13)
+   {
+   coolLetter4 = 'M';
+   }
+if (chosenLetter4 == 14)
+   {
+   coolLetter4 = 'N';
+   }
+if (chosenLetter4 == 15)
+   {
+   coolLetter4 = 'O';
+   }
+if (chosenLetter4 == 16)
+   {
+   coolLetter4 = 'P';
+   }
+if (chosenLetter4 == 17)
+   {
+   coolLetter4 = 'Q';
+   }
+if (chosenLetter4 == 18)
+   {
+   coolLetter4 = 'S';
+   }
+if (chosenLetter4 == 19)
+   {
+   coolLetter4 = 'T';
+   }
+if (chosenLetter4 == 20)
+   {
+   coolLetter4 = 'U';
+   }
+if (chosenLetter4 == 21)
+   {
+   coolLetter4 = 'V';
+   }
+if (chosenLetter4 == 22)
+   {
+   coolLetter4 = 'W';
+   }
+if (chosenLetter4 == 23)
+   {
+   coolLetter4 = 'X';
+   }
+if (chosenLetter4 == 24)
+   {
+   coolLetter4 = 'Y';
+   }
+if (chosenLetter4 == 25)
+   {
+   coolLetter4 = 'Z';
+   }
+
+}
+
+function stepHit(step)
+{
+if (curSong == 'vessel')
+   {
+   if (step == 992)
+      {
+      FlxTween.tween(dad, {alpha: 0}, 1, {ease: FlxEase.linear});
+      FlxTween.tween(camHUD, {alpha: 0}, 1.2, {ease: FlxEase.linear});
+      FlxTween.tween(bg, {alpha: 0}, 1, {ease: FlxEase.circInOut});
+      }
+   if (step == 1099)
+      {
+      currentPlayState.dad = x;
+      iconP2.switchAnim("lordxpa");
+      FlxG.camera.zoom += 0.08;
+      x.alpha = 1;
+      FlxTween.tween(camHUD, {alpha: 1}, 0.1, {ease: FlxEase.linear});
+      x.playAnim("intro", true);
+      }
+for (i in 1...7)
+    {
+    if (curStep == stepList[i])
+       {
+       onVoidEvent();
+       }
+    }
+if (sequence == true && currentPlayState.health > 0.4)
+   {
+   currentPlayState.health -= 0.03 * 2;
+   }
+   }
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+
+function reroll()
+{
+    chosenLetter = FlxG.random.int(1,25);
+    chosenLetter2 = FlxG.random.int(1,25);
+    chosenLetter3 = FlxG.random.int(1,25);
+    chosenLetter4 = FlxG.random.int(1,25);
+}

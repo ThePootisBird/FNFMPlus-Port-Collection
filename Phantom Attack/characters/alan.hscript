@@ -1,0 +1,52 @@
+trace(": )");
+// char is a Character
+function init(char) {
+    trace(": )");
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'char.png', hscriptPath + 'char.xml');
+    trace(": )");
+    char.frames = tex;
+    char.animation.addByPrefix('idle', 'death', 24, false);
+    char.animation.addByPrefix('singUP', 'death', 24, false);
+    char.animation.addByPrefix('singLEFT', 'death', 24, false);
+    char.animation.addByPrefix('singRIGHT', 'death', 24, false);
+    char.animation.addByPrefix('singDOWN', 'death', 24, false);
+    char.animation.addByPrefix('deathConfirm', 'death', 24, false);
+    char.animation.addByPrefix('deathLoop', 'death', 24, false);
+    char.animation.addByPrefix('firstDeath', 'death', 24, false);
+    trace("finish anim");
+
+    char.addOffset('idle', 550, 1110);
+    char.addOffset('singUP', 550, 1110);
+    char.addOffset('singLEFT', 550, 1110);
+    char.addOffset('singRIGHT', 550, 1110);
+    char.addOffset('singDOWN', 550, 1110);
+    char.addOffset('firstDeath', 550, 1110);
+    char.addOffset('deathConfirm', 550, 1110);
+    char.addOffset('deathLoop', 550, 1110);
+
+    char.playAnim('idle');
+
+    char.flipX = false;
+
+    char.enemyOffsetX = 0;
+    char.enemyOffsetY = 0;
+    char.playerOffsetX = 0;
+    char.playerOffsetY = 0;
+    char.followCamX = -400;
+    char.followCamY = -1000;
+    char.visible = true;
+    char.midpointX = 0;
+    char.midpointY = 0;
+}
+portraitOffset = [0, 0];
+dadVar = 6.1;
+isPixel = false;
+function update(elapsed, char) {
+    // do nothing...
+}
+var danced = false;
+function dance(char) {
+    trace(": )");
+    char.playAnim('idle');
+}
+trace("done");
