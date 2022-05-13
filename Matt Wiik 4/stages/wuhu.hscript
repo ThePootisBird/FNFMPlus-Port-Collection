@@ -1,0 +1,82 @@
+function start(song) {
+    bg = new FlxSprite(-600, -400).loadGraphic(hscriptPath + 'sky.png');
+    bg.scrollFactor.set(0.1, 0.1);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    stagecurtains2 = new FlxSprite(700, 170).loadGraphic(hscriptPath + 'bridge.png');
+    stagecurtains2.scrollFactor.set(0.4, 0.4);
+    stagecurtains2.updateHitbox();
+    stagecurtains2.antialiasing = true;
+    addSprite(stagecurtains2, BEHIND_ALL);
+    stagecurtains = new FlxSprite(-550, -100).loadGraphic(hscriptPath + 'mountain.png');
+    stagecurtains.scrollFactor.set(0.6, 0.6);
+    stagecurtains.updateHitbox();
+    stagecurtains.antialiasing = true;
+    addSprite(stagecurtains, BEHIND_ALL);
+    stageFront = new FlxSprite(-650, -100).loadGraphic(hscriptPath + 'street.png');
+    stageFront.scrollFactor.set(0.9, 0.9);
+    stageFront.antialiasing = true;
+    stageFront.updateHitbox();
+    addSprite(stageFront, BEHIND_ALL);
+    banner = new FlxSprite(0, 220).loadGraphic(hscriptPath + 'banner.png');
+    banner.scrollFactor.set(0.9, 0.9);
+    banner.antialiasing = true;
+    banner.x =  1400;
+    banner.updateHitbox();
+    banner.cameras = [camHUD];
+    addSprite(banner, BEHIND_NONE);
+    boyfriend.x += 200;
+    setDefaultZoom(0.6);
+if (curSong == 'warm-up')
+   {
+   new FlxTimer().start(4, function(tmr)
+   {
+   FlxTween.tween(banner, {x: 0}, 0.3);
+   });
+   new FlxTimer().start(8, function(tmr)
+   {
+   FlxTween.tween(banner, {x: -1500}, 0.3);
+   });
+   }
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+
+}
+
+function stepHit(step)
+{
+
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+

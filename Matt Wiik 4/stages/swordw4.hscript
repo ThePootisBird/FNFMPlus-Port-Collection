@@ -1,0 +1,84 @@
+function start(song) {
+    bg = new FlxSprite(-600, -500).loadGraphic(hscriptPath + 'sky.png');
+    bg.scrollFactor.set(0.1, 0.1);
+    bg.antialiasing = true;
+    addSprite(bg, BEHIND_ALL);
+    stageFront2 = new FlxSprite(-550, 600).loadGraphic(hscriptPath + 'water.png');
+    stageFront2.scrollFactor.set(0.5, 0.5);
+    stageFront2.antialiasing = true;
+    stageFront2.updateHitbox();
+    addSprite(stageFront2, BEHIND_ALL);
+    stagecurtains = new FlxSprite(-500, -300).loadGraphic(hscriptPath + 'bg.png');
+    stagecurtains.scrollFactor.set(0.5, 0.5);
+    stagecurtains.updateHitbox();
+    stagecurtains.antialiasing = true;
+    addSprite(stagecurtains, BEHIND_ALL);
+    upperBop = new MetroSprite(-600, -500,true);
+    upperBop.frames = FlxAtlasFrames.fromSparrow(hscriptPath + 'crowdLeft.png', hscriptPath + 'crowdLeft.xml');
+    upperBop.animation.addByPrefix("idle", "Crowd Left", 24, false);
+    upperBop.animation.play("idle");
+	upperBop.scrollFactor.set(0.7, 0.7);
+	upperBop.antialiasing = true;
+	upperBop.updateHitbox();
+	addSprite(upperBop, BEHIND_ALL);
+    upperBop2 = new MetroSprite(1100, -500,true);
+    upperBop2.frames = FlxAtlasFrames.fromSparrow(hscriptPath + 'crowdRight.png', hscriptPath + 'crowdRight.xml');
+    upperBop2.animation.addByPrefix("idle", "R Crowd Right", 24, false);
+    upperBop2.animation.play("idle");
+	upperBop2.scrollFactor.set(0.7, 0.7);
+	upperBop2.antialiasing = true;
+	upperBop2.updateHitbox();
+	addSprite(upperBop2, BEHIND_ALL);
+    stageFront = new FlxSprite(50, 600).loadGraphic(hscriptPath + 'platform.png');
+    stageFront.scrollFactor.set(0.9, 0.9);
+    stageFront.antialiasing = true;
+    stageFront.updateHitbox();
+    addSprite(stageFront, BEHIND_ALL);
+if (curSong == 'dodging' || curSong == 'engarde' || curSong == 'showdown')
+   {
+   gf.visible = false;
+   }
+    setDefaultZoom(0.6);
+}
+
+
+function beatHit(beat)
+{
+upperBop.dance();
+upperBop2.dance();
+}
+
+function update(elapsed)
+{
+
+}
+
+function stepHit(step)
+{
+
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+

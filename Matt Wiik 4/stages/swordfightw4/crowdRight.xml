@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="crowdRight.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="L Crowd Right0000" x="5" y="5" width="1133" height="1587"/>
+	<SubTexture name="L Crowd Right0001" x="1143" y="5" width="1133" height="1587"/>
+	<SubTexture name="L Crowd Right0002" x="2281" y="5" width="1133" height="1587"/>
+	<SubTexture name="L Crowd Right0003" x="3419" y="5" width="1127" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="L Crowd Right0004" x="4551" y="5" width="1127" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="L Crowd Right0005" x="5683" y="5" width="1119" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="L Crowd Right0006" x="6807" y="5" width="1119" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="L Crowd Right0007" x="5" y="1597" width="1118" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="R Crowd Right0000" x="1128" y="1597" width="1133" height="1587"/>
+	<SubTexture name="R Crowd Right0001" x="2266" y="1597" width="1133" height="1587"/>
+	<SubTexture name="R Crowd Right0002" x="3404" y="1597" width="1133" height="1587"/>
+	<SubTexture name="R Crowd Right0003" x="4542" y="1597" width="1127" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="R Crowd Right0004" x="5674" y="1597" width="1127" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="R Crowd Right0005" x="6806" y="1597" width="1119" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="R Crowd Right0006" x="6807" y="5" width="1119" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+	<SubTexture name="R Crowd Right0007" x="5" y="1597" width="1118" height="1587" frameX="0" frameY="0" frameWidth="1133" frameHeight="1587"/>
+</TextureAtlas>
