@@ -1,0 +1,135 @@
+function start(song) {
+    bg = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'hankbgsky.png');
+    bg.antialiasing = true;
+    bg.setGraphicSize(Std.int(bg.width * 2.0));
+    addSprite(bg, BEHIND_ALL);
+    bg2 = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'hankbglandscape.png');
+    bg2.scrollFactor.set(0.1, 0.1);
+    bg2.antialiasing = true;
+    bg2.setGraphicSize(Std.int(bg2.width * 1.5));
+    addSprite(bg2, BEHIND_ALL);
+    bg3 = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'hankbglandscape2.png');
+    bg3.scrollFactor.set(0.1, 0.1);
+    bg3.setGraphicSize(Std.int(bg3.width * 1.5));
+    bg3.antialiasing = true;
+    addSprite(bg3, BEHIND_ALL);
+    stageFront2 = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'hankbgcliffs.png');
+    stageFront2.setGraphicSize(Std.int(stageFront2.width * 1.5));
+    stageFront2.scrollFactor.set(0.9, 0.9);
+    stageFront2.antialiasing = true;
+    stageFront2.updateHitbox();
+    addSprite(stageFront2, BEHIND_ALL);
+    stageFront = new FlxSprite(-600, -200).loadGraphic(hscriptPath + 'hankbgfloor.png');
+    stageFront.setGraphicSize(Std.int(stageFront.width * 1.5));
+    stageFront.scrollFactor.set(0.9, 0.9);
+    stageFront.antialiasing = true;
+    stageFront.updateHitbox();
+    addSprite(stageFront, BEHIND_ALL);
+    stagecurtains = new FlxSprite(-800, 0).loadGraphic(hscriptPath + 'hankbgfog.png');
+    stagecurtains.setGraphicSize(Std.int(stagecurtains.width * 2.0));
+    stagecurtains.scrollFactor.set(1.3, 1.3);
+    stagecurtains.updateHitbox();
+    stagecurtains.antialiasing = true;
+    addSprite(stagecurtains, BEHIND_NONE);
+    dad.x -= 200;
+    gf.y += 200;
+    gf.x += 200;
+    three = new FlxSprite(-600,0).loadGraphic('assets/images/custom_ui/ui_packs/anti/three.png');
+    three.antialiasing = true;
+    three.alpha = 0;
+    three.setGraphicSize(Std.int(three.width * 0.5));
+    addSprite(three, BEHIND_NONE);
+    two = new FlxSprite(-600,0).loadGraphic('assets/images/custom_ui/ui_packs/anti/two.png');
+    two.antialiasing = true;
+    two.alpha = 0;
+    two.setGraphicSize(Std.int(two.width * 0.5));
+    addSprite(two, BEHIND_NONE);
+    one = new FlxSprite(-600,0).loadGraphic('assets/images/custom_ui/ui_packs/anti/one.png');
+    one.antialiasing = true;
+    one.alpha = 0;
+    one.setGraphicSize(Std.int(one.width * 0.5));
+    addSprite(one, BEHIND_NONE);
+    go = new FlxSprite(-600,0).loadGraphic('assets/images/custom_ui/ui_packs/anti/go-alt.png');
+    go.antialiasing = true;
+    go.alpha = 0;
+    go.setGraphicSize(Std.int(go.width * 0.5));
+    addSprite(go, BEHIND_NONE);
+    setDefaultZoom(0.8);
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+}
+
+function stepHit(step)
+{
+if (step == 1056 && curSong == 'battered')
+   {
+   three.alpha = 1;
+   };
+if (curStep > 1057 && curSong == 'battered')
+   {
+   three.alpha -= 0.07;
+   };
+if (step == 1060 && curSong == 'battered')
+   {
+   two.alpha = 1;
+   };
+if (curStep > 1061 && curSong == 'battered')
+   {
+   two.alpha -= 0.07;
+   };
+if (step == 1064 && curSong == 'battered')
+   {
+   one.alpha = 1;
+   };
+if (curStep > 1065 && curSong == 'battered')
+   {
+   one.alpha -= 0.07;
+   };
+if (step == 1068 && curSong == 'battered')
+   {
+   go.alpha = 1;
+   };
+if (curStep > 1069 && curSong == 'battered')
+   {
+   go.alpha -= 0.07;
+   };
+}
+
+function playerTwoTurn()
+{
+}
+
+function playerTwoMiss()
+{
+}
+
+function playerTwoSing()
+{
+FlxG.camera.shake(0.02, 0.08);
+currentPlayState.health -= 0.02;
+if (health < 0.02)
+   {
+   currentPlayState.health += 0.01;
+   }; 
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}
+

@@ -1,0 +1,253 @@
+
+function start(song) {
+fart = new Character(dad.x, dad.y, 'antihankpissed');
+    shart = new FlxSprite(dad.x, dad.y);
+    var tex = FlxAtlasFrames.fromSparrow('assets/images/custom_chars/antihank/char.png', 'assets/images/custom_chars/antihank/char.xml');
+    shart.frames = tex;
+    shart.animation.addByPrefix("idle", "Anti-Hank Block", 24, false);
+    shart.animation.play("idle");
+    shart.antialiasing = true;
+}
+
+
+function beatHit(beat)
+{
+
+}
+
+function update(elapsed)
+{
+    if (getHaxeActor("dad").animation.curAnim.name == "singUP") {
+        fart.playAnim('singUP');
+		}
+    if (getHaxeActor("dad").animation.curAnim.name == "singLEFT") {
+        fart.playAnim('singLEFT');
+		}	
+    if (getHaxeActor("dad").animation.curAnim.name == "singRIGHT") {
+        fart.playAnim('singRIGHT');
+		}		
+    if (getHaxeActor("dad").animation.curAnim.name == "singDOWN") {
+        fart.playAnim('singDOWN');
+                }
+    if (getHaxeActor("dad").animation.curAnim.name == "idle") {
+        fart.playAnim('idle');
+                }
+}
+
+function stepHit(step)
+{
+if (step == 412)
+   {
+   window.title = "Bitch.";
+   };
+if (step == 433 || step == 657 || step == 912 || step == 970 || step == 1065)
+   {
+   window.title = "Friday Night Funkin' Modding Plus";
+   };
+if (step == 624)
+   {
+   window.title = "KNOCK";
+   };
+if (step == 628)
+   {
+   window.title = "KNOCK IT";
+   };
+if (step == 632)
+   {
+   window.title = "KNOCK IT OFF!";
+   };
+if (step == 776)
+   {
+   window.title = "Feelin'";
+   };
+if (step == 780)
+   {
+   window.title = "Feelin' tough";
+   };
+if (step == 784)
+   {
+   window.title = "Feelin' tough, mid";
+   };
+if (step == 786)
+   {
+   window.title = "Feelin' tough, midget?";
+   };
+if (step == 794)
+   {
+   window.title = "Do";
+   };
+if (step == 796)
+   {
+   window.title = "Do you";
+   };
+if (step == 800)
+   {
+   window.title = "Do you THINK";
+   };
+if (step == 803)
+   {
+   window.title = "Do you THINK I";
+   };
+if (step == 805)
+   {
+   window.title = "Do you THINK I have";
+   };
+if (step == 806)
+   {
+   window.title = "Do you THINK I have the";
+   };
+if (step == 808)
+   {
+   window.title = "Do you THINK I have the pati";
+   };
+if (step == 812)
+   {
+   window.title = "Do you THINK I have the patience";
+   };
+if (step == 814)
+   {
+   window.title = "Do you THINK I have the patience to";
+   };
+if (step == 817)
+   {
+   window.title = "Do you THINK I have the patience to deal";
+   };
+if (step == 819)
+   {
+   window.title = "Do you THINK I have the patience to deal with";
+   };
+if (step == 820)
+   {
+   window.title = "Do you THINK I have the patience to deal with your";
+   };
+if (step == 824)
+   {
+   window.title = "Do you THINK I have the patience to deal with your shit?";
+   };
+if (step == 832)
+   {
+   window.title = "GET";
+   };
+if (step == 836)
+   {
+   window.title = "GET OUT";
+   };
+if (step == 840)
+   {
+   window.title = "GET OUT OF";
+   };
+if (step == 844)
+   {
+   window.title = "GET OUT OF MY";
+   };
+if (step == 847)
+   {
+   window.title = "GET OUT OF MY WAY!";
+   };
+if (step == 853)
+   {
+   window.title = "...";
+   };
+if (step == 862)
+   {
+   window.title = "Yeah!";
+   };
+if (step == 864)
+   {
+   window.title = "...";
+   };
+if (step == 866)
+   {
+   window.title = "Yeah!";
+   };
+if (step == 871)
+   {
+   dad.visible = false;
+   addSprite(shart, BEHIND_NONE);
+   };
+if (curStep > 871 && curStep < 874)
+   {
+   boyfriend.playAnim('attack');
+   gf.playAnim('scared');
+   };
+if (step == 876)
+   {
+   window.title = ("URGGGGH!!!");
+   removeSprite(shart);
+   addSprite(fart, BEHIND_NONE);
+   };
+if (step == 882)
+   {
+   window.title = "YOU";
+   };
+if (step == 884)
+   {
+   window.title = "YOU IN";
+   };
+if (step == 887)
+   {
+   window.title = "YOU INSUFF";
+   };
+if (step == 889)
+   {
+   window.title = "YOU INSUFFER";
+   };
+if (step == 890)
+   {
+   window.title = "YOU INSUFFERAB";
+   };
+if (step == 891)
+   {
+   window.title = "YOU INSUFFERABLE";
+   };
+if (step == 893)
+   {
+   window.title = "YOU INSUFFERABLE LIT";
+   };
+if (step == 894)
+   {
+   window.title = "YOU INSUFFERABLE LITTLE!..";
+   };
+if (step == 956)
+   {
+   window.title = "LIT";
+   };
+if (step == 958)
+   {
+   window.title = "LITTLE";
+   };
+if (step == 960)
+   {
+   window.title = "LITTLE SHIT!";
+   };
+if (step == 1052)
+   {
+   window.title = "URGH..";
+   };
+}
+
+function playerTwoTurn()
+{
+    
+}
+
+function playerTwoMiss()
+{
+    
+}
+
+function playerTwoSing()
+{
+}
+
+function playerOneTurn()
+{
+}
+
+function playerOneMiss()
+{
+}
+
+function playerOneSing()
+{
+}

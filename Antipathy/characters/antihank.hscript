@@ -1,0 +1,54 @@
+trace(": )");
+// char is a Character
+function init(char) {
+    trace(": )");
+    var tex = FlxAtlasFrames.fromSparrow(hscriptPath + 'char.png', hscriptPath + 'char.xml');
+    trace(": )");
+    char.frames = tex;
+    char.animation.addByPrefix('idle', 'Anti-Hank Idle', 31, false);
+    char.animation.addByPrefix('singUP', 'Anti-Hank M UP', 24, false);
+    char.animation.addByPrefix('singLEFT','ANTI-Hank M LEFT', 24, false);
+    char.animation.addByPrefix('singRIGHT', 'Anti-Hank M RIGHT', 24, false);
+    char.animation.addByPrefix('singDOWN', 'Anti-Hank M DOWN', 24, false);
+    char.animation.addByPrefix('block', 'Anti-Hank Block', 24, false);
+    trace("finish anim");
+
+    char.addOffset('idle', 380, -140);
+    char.addOffset('singUP', 454, -60);
+    char.addOffset('singRIGHT', 320, -203);
+    char.addOffset('singLEFT', 400, -120);
+    char.addOffset('singDOWN', 380, -140);
+    char.addOffset('block', 80, -110);
+if (char.isPlayer) {
+    char.addOffset('idle', 0, 350);
+    char.addOffset('singUP', -6, 350);
+    char.addOffset('singRIGHT',0, 350);
+    char.addOffset('singLEFT', -10, 350);
+    char.addOffset('singDOWN', 0, 350);
+    }
+
+    char.playAnim('idle');
+
+    char.flipX = false;
+
+    char.enemyOffsetX = 0;
+    char.enemyOffsetY = 0;
+    char.playerOffsetX = 0;
+    char.playerOffsetY = 0;
+    char.followCamX = -150;
+    char.followCamY = 90;
+    char.midpointX = 0;
+    char.midpointY = 0;
+}
+portraitOffset = [0, 0];
+dadVar = 6.1;
+isPixel = false;
+function update(elapsed, char) {
+    // do nothing...
+}
+var danced = false;
+function dance(char) {
+    trace(": )");
+    char.playAnim('idle');
+}
+trace("done");
